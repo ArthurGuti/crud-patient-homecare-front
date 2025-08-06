@@ -1,35 +1,90 @@
 <div class="container mt-4">
-  <h2>Patients</h2>
-  <a [routerLink]="['/patients/new']">New Patient</a>
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Date of Birth</th>
-        <th>Address</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let patient of patients">
-        <td>{{ patient.name }}</td>
-        <td>{{ patient.date_of_birth }}</td>
-        <td>{{ patient.address }}</td>
-        <td>
-          <button
-            class="btn btn-primary btn-sm"
-            (click)="editPatient(patient.id)"
+  <div class="d-flex justify-content-between align-items-center mt-4 mb-2">
+    <h2 class="mb-0"><b>Pacientes</b></h2>
+    <a [routerLink]="['/patients/new']" class="btn btn-primary">
+      <i class="bi bi-plus-lg me-2"></i> Add Paciente
+    </a>
+  </div>
+
+  <div class="input-group my-3">
+    <input
+      type="text"
+      class="text-field form-control"
+      placeholder="Buscar por nome..."
+      [(ngModel)]="searchTerm"
+      (ngModelChange)="loadPatients(1)"
+    />
+    <span class="input-group-text">
+      <i class="bi bi-search"></i>
+    </span>
+  </div>
+
+  <div class="table-responsive rounded overflow-hidden">
+    <table class="table table-striped">
+      <thead class="custom-thead">
+        <tr>
+          <th class="text-white">Nome</th>
+          <th class="d-none d-md-table-cell text-white">Data de Nascimento</th>
+          <th class="d-none d-md-table-cell text-white">Endereço</th>
+          <th class="text-end text-white">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let patient of patients">
+          <td>{{ patient.name }}</td>
+          <td class="d-none d-md-table-cell">{{ patient.date_of_birth }}</td>
+          <td class="d-none d-md-table-cell">{{ patient.address }}</td>
+          <td class="text-end">
+            <button
+              class="btn btn-link text-secondary px-1 px-sm-2 me-2"
+              (click)="viewPatient(patient.id)"
+            >
+              <i class="bi bi-eye-fill"></i>
+            </button>
+            <button
+              class="btn btn-link text-primary px-1 px-sm-2 me-2"
+              (click)="editPatient(patient.id)"
+            >
+              <i class="bi bi-pencil-fill"></i>
+            </button>
+            <button
+              class="btn btn-link text-danger px-1 px-sm-2"
+              (click)="deletePatient(patient.id)"
+            >
+              <i class="bi bi-trash-fill"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="notFound">
+          <td colspan="4" class="text-center text-danger">
+            404 — Paciente não encontrado.
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div
+      class="div-pagination d-flex justify-content-between align-items-center"
+    >
+      <span>
+        Página <b>{{ currentPage }}</b> de <b>{{ totalPages }}</b>
+      </span>
+      <div>
+        <button
+          class="btn btn-outline-secondary btn-sm me-2"
+          (click)="loadPatients(currentPage - 1)"
+          [disabled]="currentPage === 1"
+        >
+          <
+        </button>
+        <button
+          class="btn btn-outline-secondary btn-sm"
+          (click)="loadPatients(currentPage + 1)"
+          [disabled]="currentPage === totalPages"
+        >
           >
-            Edit
-          </button>
-          <button
-            class="btn btn-danger btn-sm"
-            (click)="deletePatient(patient.id)"
-          >
-            Delete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+        </button>
+      </div>
+    </div>
+  </div>
 </div>

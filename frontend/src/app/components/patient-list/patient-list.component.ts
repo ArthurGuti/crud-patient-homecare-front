@@ -3,21 +3,21 @@ import { PatientService } from 'src/app/services/patient.service';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   standalone: true,
   selector: 'app-patient-list',
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, FormsModule],
   templateUrl: './patient-list.component.html',
   styleUrls: ['./patient-list.component.css'],
 })
 export class PatientListComponent implements OnInit {
   patients: any[] = [];
-  searchTerm: string = '';
-  filteredPatients: any[] = [];
   currentPage: number = 1;
-  itemsPerPage: number = 10;
-  pagedPatients: any[] = [];
+  searchTerm: string = '';
+  totalPages: number = 1;
+  notFound: boolean = false;
 
   constructor(private patientService: PatientService, private router: Router) {}
 
@@ -25,13 +25,11 @@ export class PatientListComponent implements OnInit {
     this.loadPatients();
   }
 
-  loadPatients() {
-    this.patientService.getAll().subscribe((data: any) => {
-      this.patients = data;
-      this.filteredPatients = data;
-      this.updatePagination();
-    });
-  }
+  // loadPatients() {
+  //   this.patientService.getAll().subscribe((data: any) => {
+  //     this.patients = data;
+  //   });
+  // }
 
   deletePatient(id: number) {
     if (confirm('Are you sure you want to delete this patient?')) {
@@ -45,34 +43,31 @@ export class PatientListComponent implements OnInit {
     this.router.navigate(['/patients/edit', id]);
   }
 
-  updatePagination() {
-    const start = (this.currentPage - 1) * this.itemsPerPage;
-    const end = start + this.itemsPerPage;
-    this.pagedPatients = this.filteredPatients.slice(start, end);
+  loadPatients(page: number = 1) {
+    this.patientService.getPatients(page, this.searchTerm).subscribe({
+      next: (res) => {
+        this.patients = res.data;
+        this.currentPage = res.current_page;
+        this.totalPages = res.last_page;
+        this.notFound = this.patients.length === 0;
+      },
+      error: (err) => {
+        if (err.status === 404) {
+          this.patients = [];
+          this.notFound = true;
+        } else {
+          console.error('Erro ao buscar pacientes:', err);
+        }
+      },
+    });
   }
 
-  applyFilter() {
-    const term = this.searchTerm.toLowerCase().trim();
-    this.filteredPatients = this.patients.filter(
-      (patient) =>
-        patient.name.toLowerCase().includes(term) ||
-        patient.id.toString().includes(term)
-    );
-    this.currentPage = 1; // resetar pra primeira página ao filtrar
-    this.updatePagination();
+  onSearchChange() {
+    this.currentPage = 1;
+    this.loadPatients(1);
   }
 
-  nextPage() {
-    if (this.currentPage * this.itemsPerPage < this.filteredPatients.length) {
-      this.currentPage++;
-      this.updatePagination();
-    }
-  }
-
-  prevPage() {
-    if (this.currentPage > 1) {
-      this.currentPage--;
-      this.updatePagination();
-    }
+  viewPatient(id: number) {
+    this.router.navigate(['/patients/view', id]);
   }
 }
