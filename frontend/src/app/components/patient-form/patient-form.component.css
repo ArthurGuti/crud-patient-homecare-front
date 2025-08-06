@@ -1,0 +1,55 @@
+.main {
+  background: linear-gradient(90deg, #021526c9, #210e75b5) !important;
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 15px;
+}
+
+@media (max-width: 768px) {
+  .card {
+    height: 100%;
+    max-width: 100%;
+    border-radius: 0;
+  }
+}
+
+.button-form {
+  background: #176b8fbb;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border: none;
+  border-radius: 15px;
+  transition: all 0.2s ease-in-out;
+}
+
+.button-form:hover {
+  transform: scale(1.02);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+}
+
+.button-form:active {
+  transform: scale(1);
+  background: #176b8fbb;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+
+input[type="date"] {
+  cursor: pointer;
+}
+
+.text-field {
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.text-field:focus {
+  border-color: #3a88ed;
+  box-shadow: 0 0 10px rgba(79, 70, 229, 0.3);
+}

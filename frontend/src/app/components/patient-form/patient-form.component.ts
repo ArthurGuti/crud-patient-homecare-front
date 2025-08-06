@@ -10,6 +10,7 @@ import { ReactiveFormsModule } from '@angular/forms';
   selector: 'app-patient-form',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './patient-form.component.html',
+  styleUrls: ['./patient-form.component.css'],
 })
 export class PatientFormComponent implements OnInit {
   form!: FormGroup;

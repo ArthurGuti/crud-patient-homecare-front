@@ -1,30 +1,93 @@
-<h2>{{ isEditMode ? "Edit Patient" : "New Patient" }}</h2>
+<div class="main d-flex justify-content-center align-items-center vh-100">
+  <div class="card shadow p-4">
+    <h3 class="title text-center mb-4">
+      {{ isEditMode ? "Edit Patient" : "New Patient" }}
+    </h3>
 
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <div>
-    <label>Name:</label>
-    <input type="text" formControlName="name" />
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <!-- Name -->
+      <div class="mb-3">
+        <label class="form-label">Name</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-person"></i>
+          </span>
+          <input
+            type="text"
+            class="text-field form-control"
+            formControlName="name"
+            placeholder="Full name"
+          />
+        </div>
+      </div>
+
+      <!-- Date of Birth -->
+      <div class="mb-3">
+        <label class="form-label">Date of Birth</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-calendar-event"></i>
+          </span>
+          <input
+            type="date"
+            class="text-field form-control"
+            formControlName="date_of_birth"
+          />
+        </div>
+      </div>
+
+      <!-- Address -->
+      <div class="mb-3">
+        <label class="form-label">Address</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-house"></i>
+          </span>
+          <input
+            type="text"
+            class="text-field form-control"
+            formControlName="address"
+            placeholder="Street, City"
+          />
+        </div>
+      </div>
+
+      <!-- Phone -->
+      <div class="mb-3">
+        <label class="form-label">Phone</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-telephone"></i>
+          </span>
+          <input
+            type="text"
+            class="text-field form-control"
+            formControlName="phone"
+            placeholder="(xxx) xxx-xxxx"
+          />
+        </div>
+      </div>
+
+      <!-- Medical History -->
+      <div class="mb-3">
+        <label class="form-label">Medical History</label>
+        <div class="input-group">
+          <span class="input-group-text">
+            <i class="bi bi-file-earmark-text"></i>
+          </span>
+          <textarea
+            class="text-field form-control"
+            formControlName="medical_history"
+            rows="3"
+            placeholder="Describe here..."
+          ></textarea>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <button type="submit" class="button-form btn w-100 text-white fw-bold">
+        {{ isEditMode ? "Update" : "Create" }}
+      </button>
+    </form>
   </div>
-
-  <div>
-    <label>Date of Birth:</label>
-    <input type="date" formControlName="date_of_birth" />
-  </div>
-
-  <div>
-    <label>Address:</label>
-    <input type="text" formControlName="address" />
-  </div>
-
-  <div>
-    <label>Phone:</label>
-    <input type="text" formControlName="phone" />
-  </div>
-
-  <div>
-    <label>Medical History:</label>
-    <textarea formControlName="medical_history"></textarea>
-  </div>
-
-  <button type="submit">{{ isEditMode ? "Update" : "Create" }}</button>
-</form>
+</div>
