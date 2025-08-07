@@ -26,12 +26,6 @@ export class PatientListComponent implements OnInit {
     this.loadPatients();
   }
 
-  // loadPatients() {
-  //   this.patientService.getAll().subscribe((data: any) => {
-  //     this.patients = data;
-  //   });
-  // }
-
   deletePatient(id: number) {
     Swal.fire({
       title: 'Tem certeza?',

@@ -44,7 +44,7 @@
 }
 
 .button-form {
-  background: #176b8fbb;
+  background: #1085E5;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   border: none;
@@ -59,7 +59,7 @@
 
 .button-form:active {
   transform: scale(1);
-  background: #176b8fbb;
+  background: #0D6FBF;
   box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
 }
 

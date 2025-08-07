@@ -98,7 +98,11 @@
           </div>
         </div>
 
-        <button type="submit" class="button-form btn text-white w-100 fw-bold" [disabled]="!form.valid">
+        <button
+          type="submit"
+          class="button-form btn text-white w-100 fw-bold"
+          [disabled]="!form.valid"
+        >
           {{ isEditMode ? "Atualizar" : "Criar conta" }}
         </button>
       </form>

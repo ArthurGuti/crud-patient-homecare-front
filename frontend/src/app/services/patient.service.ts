@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class PatientService {
-  private apiUrl = 'http://127.0.0.1:8000/api/patients'; // Depois alterar para  'private apiUrl = `${environment.apiUrl}/patients`;'
+  private apiUrl = 'http://127.0.0.1:8000/api/patients'; 
 
   constructor(private http: HttpClient) {}
 

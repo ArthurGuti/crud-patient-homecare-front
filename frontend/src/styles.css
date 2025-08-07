@@ -1,1 +1,9 @@
-/* You can add global styles to this file, and also import other style files */
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+  background-color: #1085e5 !important;
+  color: white !important;
+
+  &:hover {
+    background-color: #0d6fbf !important;
+  }
+}
+
