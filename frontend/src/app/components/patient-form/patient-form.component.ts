@@ -4,11 +4,13 @@ import { PatientService } from 'src/app/services/patient.service';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective } from 'ngx-mask';
+import Swal from 'sweetalert2';
 
 @Component({
   standalone: true,
   selector: 'app-patient-form',
-  imports: [CommonModule, ReactiveFormsModule, RouterModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, NgxMaskDirective],
   templateUrl: './patient-form.component.html',
   styleUrls: ['./patient-form.component.css'],
 })
@@ -29,7 +31,7 @@ export class PatientFormComponent implements OnInit {
       name: ['', Validators.required],
       date_of_birth: ['', Validators.required],
       address: ['', Validators.required],
-      phone: [''],
+      phone: ['', Validators.required],
       medical_history: [''],
     });
 
@@ -50,10 +52,20 @@ export class PatientFormComponent implements OnInit {
         .update(this.patientId, this.form.value)
         .subscribe(() => {
           this.router.navigate(['/patients']);
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Usuário atualizado!',
+            icon: 'success',
+          });
         });
     } else {
       this.patientService.create(this.form.value).subscribe(() => {
         this.router.navigate(['/patients']);
+        Swal.fire({
+          title: 'Sucesso!',
+          text: 'Usuário cadastrado!',
+          icon: 'success',
+        });
       });
     }
   }

@@ -1,9 +1,27 @@
-<div class="container mt-4">
-  <h2>Paciente</h2>
-  <p><strong>Nome:</strong> {{ patient?.name }}</p>
-  <p><strong>Data de nascimento:</strong> {{ patient?.date_of_birth }}</p>
-  <p><strong>Endereço:</strong> {{ patient?.address }}</p>
-  <p><strong>Telefone:</strong> {{ patient?.phone }}</p>
-  <p><strong>Histórico médico:</strong> {{ patient?.medical_history }}</p>
-  <button class="btn btn-secondary" routerLink="/patients">Voltar</button>
+<div class="d-flex flex-column flex-md-row vh-100">
+  <div
+    class="div-gif d-none d-md-flex flex-column justify-content-center align-items-center w-50 p-5"
+  >
+    <img
+      src="assets/Search engines.gif"
+      alt="Illustration"
+      class="img-fluid w-100 h-65 object-fit-cover"
+    />
+  </div>
+
+  <div
+    class="main d-flex flex-column justify-content-center align-items-center w-100 text-white px-0 py-5 px-md-4"
+  >
+    <div class="card p-4 w-100" style="max-width: 400px">
+      <h2 class="title-patient text">Paciente:</h2>
+      <p><strong>Nome:</strong> {{ patient?.name }}</p>
+      <p><strong>Data de nascimento:</strong> {{ patient?.date_of_birth }}</p>
+      <p><strong>Endereço:</strong> {{ patient?.address }}</p>
+      <p><strong>Telefone:</strong> {{ patient?.phone }}</p>
+      <p id="medical-text"><strong>Histórico médico:</strong> {{ patient?.medical_history }}</p>
+      <button class="button-back btn btn-secondary" routerLink="/patients">
+        Voltar
+      </button>
+    </div>
+  </div>
 </div>

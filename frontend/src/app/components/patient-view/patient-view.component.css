@@ -1,0 +1,61 @@
+.main {
+  background: #f0f2f6 !important;
+}
+
+.card {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+}
+
+@media (min-width: 768px) {
+  .div-gif {
+    background-color: rgb(29 29 29) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .main {
+    max-width: 100%;
+    padding-top: 0 !important;
+    border-radius: 0;
+    background: #fff !important;
+  }
+  .medical-text {
+    margin-bottom: 1em;
+  }
+  .title-patient {
+    margin-bottom: 2em;
+  }
+  .card {
+    box-shadow: none;
+    border: 0px;
+    max-width: 100% !important;
+  }
+
+  .button-back {
+   max-width: 318px !important;
+  }
+}
+
+.button-back {
+  background: #e60b0bd2;
+  box-shadow: rgba(93, 50, 50, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  border: none;
+  border-radius: 0.75em;
+  transition: all 0.2s ease-in-out;
+  max-width: 450px;
+}
+
+.button-back:hover {
+  transform: scale(1.02);
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 5px 10px, rgba(0, 0, 0, 0.23) 0px 3px 3px;
+}
+
+.button-back:active {
+  transform: scale(1);
+  background: rgba(219, 42, 42, 0.963);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+}

@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import Swal from 'sweetalert2';
 
 @Component({
   standalone: true,
@@ -32,11 +33,24 @@ export class PatientListComponent implements OnInit {
   // }
 
   deletePatient(id: number) {
-    if (confirm('Are you sure you want to delete this patient?')) {
-      this.patientService.delete(id).subscribe(() => {
-        this.loadPatients();
-      });
-    }
+    Swal.fire({
+      title: 'Tem certeza?',
+      showDenyButton: true,
+      showCancelButton: false,
+      confirmButtonText: 'Sim, Deletar!',
+      denyButtonText: `Cancelar`,
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.patientService.delete(id).subscribe(() => {
+          this.loadPatients();
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Usuário deletado!',
+            icon: 'success',
+          });
+        });
+      }
+    });
   }
 
   editPatient(id: number) {

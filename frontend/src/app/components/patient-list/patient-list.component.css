@@ -29,3 +29,13 @@ table {
   padding: 0.5em;
   margin-top: 0.5em;
 }
+
+.button-add {
+  background-color: #5592ad;
+  transition: all 0.4s ease-in-out;
+}
+
+.button-add:hover {
+  background-color: #4e869e;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

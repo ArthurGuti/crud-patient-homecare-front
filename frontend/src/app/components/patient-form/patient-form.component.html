@@ -1,94 +1,107 @@
-<div class="main d-flex justify-content-center align-items-center vh-100">
-  <div class="card shadow p-4">
-    <h3 class="title text-center mb-4">
-      {{ isEditMode ? "Edit Patient" : "New Patient" }}
-    </h3> 
-    <button class="btn btn-secondary" routerLink="/patients">X</button>
+<div class="d-flex flex-column flex-md-row vh-100">
+  <div
+    class="div-gif d-none d-md-flex flex-column justify-content-center align-items-center w-50 p-5"
+  >
+    <img
+      src="assets/Mobile login.gif"
+      alt="Illustration"
+      class="img-fluid w-100 h-65 object-fit-cover"
+    />
+  </div>
 
-    <form [formGroup]="form" (ngSubmit)="submit()">
-  
-      <div class="mb-3">
-        <label class="form-label">Name</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="bi bi-person"></i>
-          </span>
-          <input
-            type="text"
-            class="text-field form-control"
-            formControlName="name"
-            placeholder="Full name"
-          />
-        </div>
+  <div
+    class="main d-flex flex-column justify-content-center align-items-center w-100 text-white px-0 py-5 px-md-4"
+  >
+    <div class="card p-4 w-100" style="max-width: 400px">
+      <div
+        class="div-head d-flex justify-content-between align-items-center mb-4"
+      >
+        <h2 class="fw-bold mb-0">
+          {{ isEditMode ? "Editar" : "Novo" }} Paciente
+        </h2>
+        <button
+          routerLink="/patients"
+          class="btn btn-close"
+          aria-label="Close"
+        ></button>
       </div>
 
-      
-      <div class="mb-3">
-        <label class="form-label">Date of Birth</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="bi bi-calendar-event"></i>
-          </span>
-          <input
-            type="date"
-            class="text-field form-control"
-            formControlName="date_of_birth"
-          />
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-person"></i>
+            </span>
+            <input
+              type="text"
+              class="text-field form-control"
+              formControlName="name"
+              placeholder="Nome completo"
+            />
+          </div>
         </div>
-      </div>
 
-    
-      <div class="mb-3">
-        <label class="form-label">Address</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="bi bi-house"></i>
-          </span>
-          <input
-            type="text"
-            class="text-field form-control"
-            formControlName="address"
-            placeholder="Street, City"
-          />
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-house"></i>
+            </span>
+            <input
+              type="text"
+              class="text-field form-control"
+              formControlName="address"
+              placeholder="Endereço"
+            />
+          </div>
         </div>
-      </div>
 
-     
-      <div class="mb-3">
-        <label class="form-label">Phone</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="bi bi-telephone"></i>
-          </span>
-          <input
-            type="text"
-            class="text-field form-control"
-            formControlName="phone"
-            placeholder="(xxx) xxx-xxxx"
-          />
+        <div class="mb-3">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-telephone"></i>
+            </span>
+            <input
+              type="text"
+              class="text-field form-control"
+              formControlName="phone"
+              placeholder="Telefone"
+              mask="(00) 0000-0000||(00) 00000-0000"
+            />
+          </div>
         </div>
-      </div>
 
-     
-      <div class="mb-3">
-        <label class="form-label">Medical History</label>
-        <div class="input-group">
-          <span class="input-group-text">
-            <i class="bi bi-file-earmark-text"></i>
-          </span>
-          <textarea
-            class="text-field form-control"
-            formControlName="medical_history"
-            rows="3"
-            placeholder="Describe here..."
-          ></textarea>
+        <div class="mb-3">
+          <label class="date-label form-label">Data de aniversario</label>
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-calendar-event"></i>
+            </span>
+            <input
+              type="date"
+              class="text-field form-control"
+              formControlName="date_of_birth"
+            />
+          </div>
         </div>
-      </div>
 
-     
-      <button type="submit" class="button-form btn w-100 text-white fw-bold">
-        {{ isEditMode ? "Update" : "Create" }}
-      </button>
-    </form>
+        <div class="div-date mb-3">
+          <div class="input-group">
+            <span class="input-group-text">
+              <i class="bi bi-file-earmark-text"></i>
+            </span>
+            <textarea
+              class="text-field form-control"
+              formControlName="medical_history"
+              rows="3"
+              placeholder="Histório médico..."
+            ></textarea>
+          </div>
+        </div>
+
+        <button type="submit" class="button-form btn text-white w-100 fw-bold" [disabled]="!form.valid">
+          {{ isEditMode ? "Atualizar" : "Criar conta" }}
+        </button>
+      </form>
+    </div>
   </div>
 </div>
